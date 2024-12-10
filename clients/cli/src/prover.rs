@@ -202,7 +202,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             steps_proven += 1;
 
             let progress_duration = progress_time.elapsed();
-            let proof_cycles_hertz = k as f64 * 1000.0 / progress_duration.as_millis() as f64;
+            let proof_cycles_hertz = k as f64 * 10000.0 / progress_duration.as_millis() as f64;
 
             //update the queued variables
             queued_proof_duration_millis += progress_duration.as_millis() as i32;
