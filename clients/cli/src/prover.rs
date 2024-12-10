@@ -215,7 +215,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 program_id: program_name.clone(),
                 client_id_token: None,
                 proof_duration_millis: queued_proof_duration_millis,
-                k,
+                k: k * 10,
                 cli_prover_id: Some(prover_id.clone()),
             };
 
