@@ -248,7 +248,7 @@ while true; do
 
     case "$1" in
         1)
-            rm -rf "$PROGRAM_DIR"
+            rm -rf "$NEXUS_HOME"
             setup_directories
             check_dependencies
             download_files
