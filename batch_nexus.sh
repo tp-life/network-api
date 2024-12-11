@@ -234,38 +234,15 @@ cleanup() {
 
 trap cleanup SIGINT SIGTERM
 
-case $1 in
-        1)
-            setup_directories
-            check_dependencies
-            download_files
-            if [ -n "$2" ]; then
-                echo "$2" > "$PROVER_ID_FILE"
-                echo -e "${GREEN}Prover ID 已更新${NC}"
-            else
-                echo $2
-            fi
-            start_prover
-            echo "succ, 开始进入页面"
-            check_status
-            ;;
-        2)
-            check_status
-            ;;
-        3)
-            show_prover_id
-            ;;
-        4)
-            set_prover_id
-            ;;
-        5)
-            stop_prover
-            ;;
-        6)
-            echo -e "\n${GREEN}感谢使用！${NC}"
-            cleanup
-            ;;
-        *)
-            echo -e "${RED}无效的选择${NC}"
-            ;;
-    esac
+setup_directories
+check_dependencies
+download_files
+if [ -n "$2" ]; then
+    echo "$2" > "$PROVER_ID_FILE"
+    echo -e "${GREEN}Prover ID 已更新${NC}"
+else
+    echo $2
+fi
+start_prover
+echo "succ, 开始进入页面"
+show_prover_id
