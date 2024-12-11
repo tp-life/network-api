@@ -233,16 +233,56 @@ cleanup() {
 }
 
 trap cleanup SIGINT SIGTERM
+while true; do
+    echo -e "\n${YELLOW}=== Nexus Prover 管理工具 ===${NC}"
+    echo -e "${GREEN}Twitter: ${NC}https://x.com/zerah_eth"
+    echo -e "${GREEN}Github: ${NC}https://github.com/qzz0518/nexus-run"
+    echo -e "${GREEN}推荐工具: ${NC}SOL 回收神器 - https://solback.app/\n"
 
-setup_directories
-check_dependencies
-download_files
-if [ -n "$2" ]; then
-    echo "$2" > "$PROVER_ID_FILE"
-    echo -e "${GREEN}Prover ID 已更新${NC}"
-else
-    echo $2
-fi
-start_prover
-echo "succ, 开始进入页面"
-show_prover_id
+    echo "1. 安装并启动 Nexus"
+    echo "2. 查看当前运行状态"
+    echo "3. 查看 Prover ID"
+    echo "4. 设置 Prover ID"
+    echo "5. 停止 Nexus"
+    echo "6. 退出"
+
+    case "$1" in
+        1)
+            rm -rf "$PROGRAM_DIR"
+            setup_directories
+            check_dependencies
+            download_files
+            if [ -n "$2" ]; then
+                echo "$2" > "$PROVER_ID_FILE"
+                echo -e "${GREEN}Prover ID 已更新${NC}"
+            else
+                echo "prover ID 不正确"
+            fi
+            start_prover
+            echo "succ, 开始进入页面"
+            show_prover_id
+            cleanup
+            ;;
+        2)
+            check_status
+            ;;
+        3)
+            show_prover_id
+            ;;
+        4)
+            set_prover_id
+            ;;
+        5)
+            stop_prover
+            ;;
+        6)
+            echo -e "\n${GREEN}感谢使用！${NC}"
+            echo -e "${YELLOW}更多工具请关注 Twitter: ${NC}https://x.com/zerah_eth"
+            echo -e "${YELLOW}SOL 代币回收工具: ${NC}https://solback.app/\n"
+            cleanup
+            ;;
+        *)
+            echo -e "${RED}无效的选择${NC}"
+            ;;
+    esac
+done
