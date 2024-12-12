@@ -284,6 +284,7 @@ while true; do
         7)
             stop_prover
             start_prover
+            echo "succ, 开始进入页面"
             cleanup
             ;;
         *)
