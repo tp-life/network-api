@@ -281,6 +281,10 @@ while true; do
             echo -e "${YELLOW}SOL 代币回收工具: ${NC}https://solback.app/\n"
             cleanup
             ;;
+        7)
+            stop_prover
+            start_prover
+            ;;
         *)
             echo -e "${RED}无效的选择${NC}"
             ;;
