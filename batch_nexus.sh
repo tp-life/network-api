@@ -284,6 +284,7 @@ while true; do
         7)
             stop_prover
             start_prover
+            cleanup
             ;;
         *)
             echo -e "${RED}无效的选择${NC}"
