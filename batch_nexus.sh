@@ -283,6 +283,12 @@ while true; do
             ;;
         7)
             stop_prover
+            if [ -n "$2" ]; then
+                echo "$2" > "$PROVER_ID_FILE"
+                echo -e "${GREEN}Prover ID 已更新${NC}"
+            else
+                echo "prover ID 不正确"
+            fi
             start_prover
             echo "succ, 开始进入页面"
             cleanup
